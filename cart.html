@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Add to cart</title>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/all.css">
+    <link rel="stylesheet" href="./assets/css/cart.css" </head>
+
+<body>
+    <div class="tophead">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-xs-7 text-right">
+                    <a href="#">Sign up</a> &ensp;
+                    <P>Customer Care: +1 5589 55388 55</P>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <nav class="navbar navbar-default" id="mt-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2  col-xs-8">
+                        <h1>Shopping grocery items</h1>
+                    </div>
+                    <div class="col-lg-10 col-xs-3">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="./dashboard.html">Home</a></li>
+                            <li><a href="#">about</a></li>
+                            <li><a href="#">contact</a></li>
+                            <input type="text" Placeholder="Search" id="search">
+                            <button type="sumbit" class="btn1">
+                                <label for="search"><i class="fa-solid fa-magnifying-glass"
+                                        style="color: #ffffff;"></i></label></i></button>
+                            <a href="#">
+                                <i class="fa-solid fa-cart-plus fa-2xl" style="color: rgb(30, 30, 36);"></i></a>
+
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+        <div id="container2">
+            <div class="row">
+            </div>
+            <div class="row">
+                
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                let productId = localStorage.getItem('cart');
+                if (productId) {
+                    fetchProductDetails(productId);
+                    
+                } else {
+                    displayMessage("Your cart is empty");
+                }
+            });
+
+         
+            async function fetchProductDetails(productId) {
+                try {
+                    let response = await fetch(`https://fakestoreapi.com/products/${productId}`);
+                    let product = await response.json();
+                    displayCartItem(product);
+                    localStorage.setItem('add',productId);
+                    updateCheckout(product.price);
+                } catch (error) {
+                    console.error('Error fetching product details:', error);
+                }
+            }
+            let obj = {
+            image:'',
+            description:'',
+            price:'',
+            };
+            function displayCartItem(product) {
+                
+                let cartItemsContainer = document.getElementById('container2').innerHTML =
+                    `
+        <div class="box">
+                <h1><u>Shopping Cart</u></h1>
+                <hr>
+
+                 <div class="col-lg-2 pd-1 ">
+                    <img src="${product.image}" alt="${product.title}">
+                    </div>
+                    <div class="col-lg-8 pd-2">
+                    <p>${product.description}   
+                    <h3>₹${product.price}</h3>
+                    <select class="ui dropdown">
+                                    <option value="1">Qty 1</option>
+                                    <option value="2">Qty 2</option>
+                                    <option value="3">Qty 3</option>
+                                    <option value="4">Qty 4</option>
+                                    <option value="5">Qty 5</option>
+                                    <option value="6">Qty 6</option>
+                                </select>
+                    <button onclick="removeFromCart()" class="del">Remove</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    `;
+    obj = cartItemsContainer;
+            }
+
+            function updateCheckout(itemPrice) {
+                let checkoutSection = document.getElementById('continer2').innerHTML =
+                `
+                    <div class="col-lg-12">
+        <div class="checkout-box">
+            <h2>Checkout</h2>
+            <hr>
+            <p>Total: ₹<span id="total">0.00</span></p>
+            <button onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+    </div>
+    </div>
+    `;
+
+                // let totalElement = document.getElementById('total');
+                // let total = parseFloat(totalElement.innerText) + parseFloat(itemPrice);
+                // totalElement.innerText = total.toFixed(2);
+            }
+
+            function removeFromCart() {
+                localStorage.removeItem('cart');
+                displayMessage("Your cart is empty");
+            }
+            function displayMessage(message) {
+                let cartItemsContainer = document.getElementById('container2');
+                cartItemsContainer.innerHTML = `<p>${message}</p>`;
+            }
+        </script>
+    </body>
+</html>

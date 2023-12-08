@@ -1,0 +1,129 @@
+body {
+    background: #76b852;
+    font-family: sans-serif;
+}
+
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  
+
+  /* .content {
+    position: fixed;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+  } */
+
+.login-page {
+    width: 400px;
+    padding: 8% 0 0;
+    margin: auto;
+}
+
+.form {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0,0,0,.6);
+    max-width: 360px;
+    margin: 50px 20px 30px;
+    padding: 90px 45px 30px 45px;
+    text-align: center;
+    border-radius:20px;
+}
+    .inner-circle{
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translate(-50%,-50%);
+    height:100px;
+    width:100px;
+    background-color:whitesmoke;
+    border-radius:100px;
+    line-height:100px;
+}
+
+.form input {
+    font-family: sans-serif;
+    outline: 0;
+    background: transparent;
+    width: 100%;
+    border: 0;
+    margin: 0 0 22px;
+    padding: 12px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-bottom:1px solid lightgrey;
+    color:white;
+}
+/* .form input:hover{
+    background-color:whitesmoke;
+    border-radius:6px;
+
+} */
+.form input:focus {
+    /* border-bottom:2px solid rgb(69, 69, 223); */
+    border:2px solid rgb(53, 132, 19);
+  }
+
+
+.form button {
+    font-family: sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    /* -webkit-transition: all 0.3 ease; */
+    /* transition: all 0.3 ease; */
+    transition: 0.8s;
+    cursor: pointer;
+}
+.form button {
+    transition-timing-function: ease;
+}
+
+.form button:hover{
+    width:100px;
+    height:46px;
+}
+
+.form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+
+.form .message a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.form .register-form {
+    display: none;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+h1{
+    margin-top:0;
+    margin-bottom:0;
+    padding-bottom:23px; 
+    font-size:28px;
+    color:white
+}
